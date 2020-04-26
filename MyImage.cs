@@ -423,7 +423,7 @@ namespace Projet_info_S4
 
 
         //Méthode qui permet de réaliser l'histogramme des couleurs d'une image
-        public void Histogramme(Pixel[,] image)
+        public void Histogramme()
         {
             int taille2 = image.GetLength(0) * image.GetLength(1);
             int[] R = new int[256];
@@ -550,6 +550,15 @@ namespace Projet_info_S4
             }
 
             image = Histogramme;
+            haut = 256;
+            large = 788;
+            taille = haut * large * 3 + 54;
+            byte[] temp = Convertir_Int_To_Endian(large, 4);
+            for (int i = 0; i < 4; i++) { header[18 + i] = temp[i]; }
+            temp = Convertir_Int_To_Endian(haut, 4);
+            for (int i = 0; i < 4; i++) { header[22 + i] = temp[i]; }
+            temp = Convertir_Int_To_Endian(taille, 4);
+            for (int i = 0; i < 4; i++) { header[2 + i] = temp[i]; }
         }
 
         //Méthode permettant de coder une image dans une autre image
@@ -662,7 +671,7 @@ namespace Projet_info_S4
 
                 }
             }
-            im2 = ImageFinale;
+            image = ImageFinale;
         }
 
         //Méthode permettant de décoder une image dans une autre image
