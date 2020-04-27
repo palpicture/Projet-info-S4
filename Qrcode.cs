@@ -11,7 +11,7 @@ namespace Projet_info_S4
 
         int version;
         byte[] data;
-        string masque = "111011111000100";
+        static string masque = "111011111000100";
 
         public Qrcode (string mot)
         {
@@ -85,12 +85,12 @@ namespace Projet_info_S4
                 foreach (byte val in result)
                 {
                     binary = Convert.ToString(val, 2);
-                    for (int i = 0; i < ; i++)
+                    for (int i = 0; i < binary.Length; i++)
                     {
-                        if (binary.Length > i) { data[compt + 6 - i] = (byte)binary[binary.Length - 1 - i]; }
-                        else { data[compt * 11 + 21 - i] = 0; }
+                        if (binary.Length > i) { data[compt + 7 - i] = (byte)binary[binary.Length - 1 - i]; }
+                        else { data[compt + 7 - i] = 0; }
                     }
-                    compt += 7;
+                    compt += 8;
                 }
 
             }
@@ -98,6 +98,78 @@ namespace Projet_info_S4
             {
                 version = 2;
                 data = new byte[368];
+                data[0] = 0;
+                data[1] = 0;
+                data[2] = 1;
+                data[3] = 0;
+                string binary = Convert.ToString(taille, 2);
+                for (int i = 0; i < 9; i++)
+                {
+                    if (binary.Length > i) { data[12 - i] = (byte)binary[i]; }
+                    else { data[12 - i] = 0; }
+                }
+                int index;
+                int temp;
+                int compt = 0;
+                for (index = 0; index < taille - 1; index += 2)
+                {
+                    temp = ConvertToInt(mot[index]) * 45 + ConvertToInt(mot[index + 1]);
+                    binary = Convert.ToString(temp, 2);
+                    for (int i = 0; i < 11; i++)
+                    {
+                        if (binary.Length > i) { data[compt * 11 + 21 - i] = (byte)binary[binary.Length - 1 - i]; }
+                        else { data[compt + 21 - i] = 0; }
+                    }
+                    compt++;
+                }
+                compt--;
+                compt = compt * 11 + 21;
+                if (taille % 2 == 1)
+                {
+                    temp = ConvertToInt(mot[index + 1]);
+                    binary = Convert.ToString(temp, 2);
+                    for (int i = 0; i < 6; i++)
+                    {
+                        if (binary.Length > i) { data[compt + 6 - i] = (byte)binary[binary.Length - 1 - i]; }
+                        else { data[compt * 11 + 21 - i] = 0; }
+                    }
+                    compt += 7;
+                }
+                index = 0;
+                while (compt < 272 && index < 4)
+                {
+                    data[compt] = 0;
+                    compt++;
+                    index++;
+                }
+                while (compt < 272 && compt % 8 == 1)
+                {
+                    data[compt] = 0;
+                    compt++;
+                }
+                byte[] fin = { 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1 };
+                index = 0;
+                while (compt < 272)
+                {
+                    data[compt] = fin[index];
+                    compt++;
+                    index++;
+                    if (index == 16) { index = 0; }
+                }
+                Encoding u8 = Encoding.UTF8;
+                int iBC = u8.GetByteCount(mot);
+                byte[] bytesa = u8.GetBytes(mot);
+                byte[] result = ReedSolomonAlgorithm.Encode(bytesa, 10, ErrorCorrectionCodeType.QRCode);
+                foreach (byte val in result)
+                {
+                    binary = Convert.ToString(val, 2);
+                    for (int i = 0; i < binary.Length; i++)
+                    {
+                        if (binary.Length > i) { data[compt + 7 - i] = (byte)binary[binary.Length - 1 - i]; }
+                        else { data[compt + 7 - i] = 0; }
+                    }
+                    compt += 8;
+                }
             }
             else { Console.WriteLine("erreur, chaine de carractere trop longue"); }
         }
