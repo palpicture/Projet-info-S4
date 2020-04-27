@@ -78,6 +78,20 @@ namespace Projet_info_S4
                     index++;
                     if (index == 16) { index = 0; }
                 }
+                Encoding u8 = Encoding.UTF8;
+                int iBC = u8.GetByteCount(mot);
+                byte[] bytesa = u8.GetBytes(mot);
+                byte[] result = ReedSolomonAlgorithm.Encode(bytesa, 7, ErrorCorrectionCodeType.QRCode);
+                foreach (byte val in result)
+                {
+                    binary = Convert.ToString(val, 2);
+                    for (int i = 0; i < ; i++)
+                    {
+                        if (binary.Length > i) { data[compt + 6 - i] = (byte)binary[binary.Length - 1 - i]; }
+                        else { data[compt * 11 + 21 - i] = 0; }
+                    }
+                    compt += 7;
+                }
 
             }
             else if (mot.Length <48)

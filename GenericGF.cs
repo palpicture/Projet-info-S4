@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ReedSolomon
+namespace Projet_info_S4
 {
     /*
      * Copyright 2007 ZXing authors
