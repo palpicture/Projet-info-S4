@@ -677,25 +677,23 @@ namespace Projet_info_S4
         //Méthode permettant de décoder une image dans une autre image
         public void Décodage()
         {
-            int haut2 = 480;
-            int large2 = 720;
             char[] Rbis = new char[8] { '0', '0', '0', '0', '0', '0', '0', '0' };
             char[] Vbis = new char[8] { '0', '0', '0', '0', '0', '0', '0', '0' };
             char[] Bbis = new char[8] { '0', '0', '0', '0', '0', '0', '0', '0' };
             char[] Rbis2 = new char[8] { '0', '0', '0', '0', '0', '0', '0', '0' };
             char[] Vbis2 = new char[8] { '0', '0', '0', '0', '0', '0', '0', '0' };
             char[] Bbis2 = new char[8] { '0', '0', '0', '0', '0', '0', '0', '0' };
-            Pixel[,] im2 = new Pixel[haut2, large2];
-            for (int i = 0; i < haut2; i++)
+            Pixel[,] im2 = new Pixel[haut, large];
+            for (int i = 0; i < haut; i++)
             {
-                for (int j = 0; j < large2; j++)
+                for (int j = 0; j < large; j++)
                 {
                     im2[i, j] = new Pixel(0, 0, 0);
                 }
             }
-            for (int i = 0; i < haut2; i++)
+            for (int i = 0; i < haut; i++)
             {
-                for (int j = 0; j < large2; j++)
+                for (int j = 0; j < large; j++)
                 {
                     string rouge = Convert.ToString(image[i, j].Red, 2);
                     string bleu = Convert.ToString(image[i, j].Blue, 2);
@@ -734,8 +732,6 @@ namespace Projet_info_S4
                     im2[i, j].Blue = (byte)Convert.ToInt32(Bleu, 2);
                 }
             }
-            haut = haut2;
-            large = large2;
             image = im2;
         }
     }
