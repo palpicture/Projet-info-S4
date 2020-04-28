@@ -32,7 +32,7 @@ namespace Projet_info_S4
             this.haut = Convertir_Endian_To_Int(new byte[] { image[22], image[23], image[24], image[25] });
             this.offset = Convertir_Endian_To_Int(new byte[] { image[14], image[15], image[16], image[17] });
             this.couleur = Convertir_Endian_To_Int(new byte[] { image[28], image[29] }) / 8;
-            this.image = GoImage(image, large, haut, offset, taille);
+            this.image = GoImage(image, large, haut, offset);
             this.header = new byte[54];
             for (int i = 0; i < 54; i++) { header[i] = image[i]; }
         }
@@ -52,6 +52,23 @@ namespace Projet_info_S4
             header = new byte[54] { 66, 77, tailletab[0], tailletab[1], tailletab[2], tailletab[3], 0, 0, 0, 0, 54, 0, 0, 0, 40, 0, 0, 0, largetab[0], largetab[1], largetab[2], largetab[3], hauttab[0], hauttab[1], hauttab[2], hauttab[3], 1, 0, 24, 0, 0, 0, 0, 0, 176, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
             image = new Pixel[haut, large];
             Fractale();
+        }
+
+        //constructeur pour le qrcode
+        public MyImage(int cote, Pixel[,] code)
+        {
+            type = "bmp";
+            this.haut = cote;
+            this.large = cote;
+            this.taille = cote*cote + 54;
+            this.offset = 54;
+            this.couleur = 3;
+            this.image = code;
+            byte[] tailletab = Convertir_Int_To_Endian(taille, 4);
+            byte[] hauttab = Convertir_Int_To_Endian(haut, 4);
+            byte[] largetab = Convertir_Int_To_Endian(large, 4);
+            header = new byte[54] { 66, 77, tailletab[0], tailletab[1], tailletab[2], tailletab[3], 0, 0, 0, 0, 54, 0, 0, 0, 40, 0, 0, 0, largetab[0], largetab[1], largetab[2], largetab[3], hauttab[0], hauttab[1], hauttab[2], hauttab[3], 1, 0, 24, 0, 0, 0, 0, 0, 176, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+
         }
 
         //Métohde pour passer d'un tableau de byte en entier avec une boucle for sur tous les bytes du tableau
@@ -84,7 +101,7 @@ namespace Projet_info_S4
         }
 
         //Méthode pour accéder aux pixels de l'image sans le header
-        private Pixel[,] GoImage(byte[] image, int large, int haut, int offset, int taille)
+        private Pixel[,] GoImage(byte[] image, int large, int haut, int offset)
         {
             Pixel[,] tab = new Pixel[haut, large];
             int i = offset + 14;
