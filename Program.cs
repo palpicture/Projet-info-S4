@@ -23,8 +23,8 @@ namespace Projet_info_S4
             //MyImage histo = new MyImage("coco.bmp");
             //histo.Histogramme();
             //histo.From_Image_To_File("histogramme.bmp");
-            Qrcode QR = new Qrcode("Hello World");
-            QR.generation("HElloWorld.bmp");
+            //Qrcode QR = new Qrcode("Hello World");
+            //QR.generation("HElloWorld.bmp");
 
             Console.WriteLine("done");
             Console.ReadKey();

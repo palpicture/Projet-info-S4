@@ -294,15 +294,18 @@ namespace Projet_info_S4
                         {
                             for (int y = 20; y >= 0; y --)
                             {
+
                                 if (code[y, x] == null) 
                                 {
                                     if (data[index] == (byte)0) { code[y, x] = new Pixel((byte)255, (byte)255, (byte)255); }
                                     else { code[y, x] = new Pixel((byte)0, (byte)0, (byte)0); }
-                                    if(code[y,x-1]==null)
-                                    {
-                                        if (data[index] == (byte)0) { code[y, x-1] = new Pixel((byte)255, (byte)255, (byte)255); }
-                                        else { code[y, x-1] = new Pixel((byte)0, (byte)0, (byte)0); }
-                                    }
+                                    index++;
+                                }
+                                if (code[y, x - 1] == null)
+                                {
+                                    if (data[index] == (byte)0) { code[y, x - 1] = new Pixel((byte)255, (byte)255, (byte)255); }
+                                    else { code[y, x - 1] = new Pixel((byte)0, (byte)0, (byte)0); }
+                                    index++;
                                 }
                             }
                             montee = false;
@@ -315,18 +318,175 @@ namespace Projet_info_S4
                                 {
                                     if (data[index] == (byte)0) { code[y, x] = new Pixel((byte)255, (byte)255, (byte)255); }
                                     else { code[y, x] = new Pixel((byte)0, (byte)0, (byte)0); }
-                                    if (code[y, x - 1] == null)
-                                    {
-                                        if (data[index] == (byte)0) { code[y, x - 1] = new Pixel((byte)255, (byte)255, (byte)255); }
-                                        else { code[y, x - 1] = new Pixel((byte)0, (byte)0, (byte)0); }
-                                    }
+                                    index++;
+                                }
+                                if (code[y, x - 1] == null)
+                                {
+                                    if (data[index] == (byte)0) { code[y, x - 1] = new Pixel((byte)255, (byte)255, (byte)255); }
+                                    else { code[y, x - 1] = new Pixel((byte)0, (byte)0, (byte)0); }
+                                    index++;
                                 }
                             }
-                            montee = false;
+                            montee = true;
                         }
 
                     }
                     MyImage QR = new MyImage(21, code);
+                    QR.Agrandissement(4);
+                    QR.From_Image_To_File(nom);
+                    break;
+
+                case (2):
+                    code = new Pixel[25, 25];
+                    //tracage de tous les separateurs
+                    for (int i = 0; i < 7; i++)
+                    {
+                        code[i, 0] = new Pixel((byte)0, (byte)0, (byte)0);
+                        code[0, i] = new Pixel((byte)0, (byte)0, (byte)0);
+                        code[6, i] = new Pixel((byte)0, (byte)0, (byte)0);
+                        code[i, 6] = new Pixel((byte)0, (byte)0, (byte)0);
+                        code[24 - i, 0] = new Pixel((byte)0, (byte)0, (byte)0);
+                        code[24, i] = new Pixel((byte)0, (byte)0, (byte)0);
+                        code[18, i] = new Pixel((byte)0, (byte)0, (byte)0);
+                        code[24 - i, 6] = new Pixel((byte)0, (byte)0, (byte)0);
+                        code[i, 24] = new Pixel((byte)0, (byte)0, (byte)0);
+                        code[0, 24 - i] = new Pixel((byte)0, (byte)0, (byte)0);
+                        code[6, 24 - i] = new Pixel((byte)0, (byte)0, (byte)0);
+                        code[i, 18] = new Pixel((byte)0, (byte)0, (byte)0);
+                    }
+                    for (int i = 0; i < 5; i++)
+                    {
+                        code[1 + i, 1] = new Pixel((byte)255, (byte)255, (byte)255);
+                        code[1, 1 + i] = new Pixel((byte)255, (byte)255, (byte)255);
+                        code[5, 1 + i] = new Pixel((byte)255, (byte)255, (byte)255);
+                        code[1 + i, 5] = new Pixel((byte)255, (byte)255, (byte)255);
+                        code[23 - i, 1] = new Pixel((byte)255, (byte)255, (byte)255);
+                        code[23, 1 + i] = new Pixel((byte)255, (byte)255, (byte)255);
+                        code[15, 1 + i] = new Pixel((byte)255, (byte)255, (byte)255);
+                        code[23 - i, 5] = new Pixel((byte)255, (byte)255, (byte)255);
+                        code[1 + i, 23] = new Pixel((byte)255, (byte)255, (byte)255);
+                        code[1, 23 - i] = new Pixel((byte)255, (byte)255, (byte)255);
+                        code[5, 23 - i] = new Pixel((byte)255, (byte)255, (byte)255);
+                        code[1 + i, 15] = new Pixel((byte)255, (byte)255, (byte)255);
+                    }
+                    for (int i = 0; i < 3; i++)
+                    {
+                        code[2 + i, 2] = new Pixel((byte)0, (byte)0, (byte)0);
+                        code[2, 2 + i] = new Pixel((byte)0, (byte)0, (byte)0);
+                        code[4, 2 + i] = new Pixel((byte)0, (byte)0, (byte)0);
+                        code[2 + i, 4] = new Pixel((byte)0, (byte)0, (byte)0);
+                        code[22 - i, 2] = new Pixel((byte)0, (byte)0, (byte)0);
+                        code[22, 2 + i] = new Pixel((byte)0, (byte)0, (byte)0);
+                        code[20, 2 + i] = new Pixel((byte)0, (byte)0, (byte)0);
+                        code[22 - i, 4] = new Pixel((byte)0, (byte)0, (byte)0);
+                        code[2 + i, 22] = new Pixel((byte)0, (byte)0, (byte)0);
+                        code[2, 22 - i] = new Pixel((byte)0, (byte)0, (byte)0);
+                        code[4, 22 - i] = new Pixel((byte)0, (byte)0, (byte)0);
+                        code[2 + i, 20] = new Pixel((byte)0, (byte)0, (byte)0);
+                    }
+                    code[3, 3] = new Pixel((byte)0, (byte)0, (byte)0);
+                    code[21, 3] = new Pixel((byte)0, (byte)0, (byte)0);
+                    code[3, 21] = new Pixel((byte)0, (byte)0, (byte)0);
+
+                    //patern de séparation
+                    for (int i = 0; i < 8; i++)
+                    {
+                        code[7, i] = new Pixel((byte)255, (byte)255, (byte)255);
+                        code[i, 7] = new Pixel((byte)255, (byte)255, (byte)255);
+                        code[13, i] = new Pixel((byte)255, (byte)255, (byte)255);
+                        code[24 - i, 7] = new Pixel((byte)255, (byte)255, (byte)255);
+                        code[i, 13] = new Pixel((byte)255, (byte)255, (byte)255);
+                        code[7, 24 - i] = new Pixel((byte)255, (byte)255, (byte)255);
+                    }
+
+                    //motifs de synchronisation
+                    for (int i = 8; i < 13; i++)
+                    {
+                        if (i % 2 == 0)
+                        {
+                            code[i, 6] = new Pixel((byte)0, (byte)0, (byte)0);
+                            code[6, i] = new Pixel((byte)0, (byte)0, (byte)0);
+                        }
+                        else
+                        {
+                            code[6, i] = new Pixel((byte)255, (byte)255, (byte)255);
+                            code[i, 6] = new Pixel((byte)255, (byte)255, (byte)255);
+                        }
+                    }
+
+                    //implantation du masque
+                    for (int i = 0; i < 15; i++)
+                    {
+                        if (masque[i] == 0)
+                        {
+                            if (i < 6) { code[8, i] = new Pixel((byte)0, (byte)0, (byte)0); }
+                            else if (i < 8) { code[8, 1 + i] = new Pixel((byte)0, (byte)0, (byte)0); }
+                            else if (i == 8) { code[7, 8] = new Pixel((byte)0, (byte)0, (byte)0); }
+                            else { code[14 - i, 8] = new Pixel((byte)0, (byte)0, (byte)0); }
+                            if (i < 7) { code[24 - i, 8] = new Pixel((byte)0, (byte)0, (byte)0); }
+                            else { code[8, 24 - i] = new Pixel((byte)0, (byte)0, (byte)0); }
+                        }
+                        else
+                        {
+                            if (i < 6) { code[8, i] = new Pixel((byte)255, (byte)255, (byte)255); }
+                            else if (i < 8) { code[8, 1 + i] = new Pixel((byte)255, (byte)255, (byte)255); }
+                            else if (i == 8) { code[7, 8] = new Pixel((byte)255, (byte)255, (byte)255); }
+                            else { code[14 - i, 8] = new Pixel((byte)255, (byte)255, (byte)255); }
+                            if (i < 7) { code[24 - i, 8] = new Pixel((byte)255, (byte)255, (byte)255); }
+                            else { code[8, 24 - i] = new Pixel((byte)255, (byte)255, (byte)255); }
+                        }
+                    }
+
+                    //dark module
+                    code[8, 13] = new Pixel((byte)255, (byte)255, (byte)255);
+
+                    //ecriture du code
+                    montee = true;
+                    index = 0;
+                    for (int x = 24; x > 0; x -= 2)
+                    {
+                        if (x == 6) { x--; }
+                        if (montee)
+                        {
+                            for (int y = 24; y >= 0; y--)
+                            {
+                                if (code[y, x] == null)
+                                {
+                                    if (data[index] == (byte)0) { code[y, x] = new Pixel((byte)255, (byte)255, (byte)255); }
+                                    else { code[y, x] = new Pixel((byte)0, (byte)0, (byte)0); }
+                                    index++;
+                                }
+                                if (code[y, x - 1] == null)
+                                {
+                                    if (data[index] == (byte)0) { code[y, x - 1] = new Pixel((byte)255, (byte)255, (byte)255); }
+                                    else { code[y, x - 1] = new Pixel((byte)0, (byte)0, (byte)0); }
+                                    index++;
+                                }
+                            }
+                            montee = false;
+                        }
+                        else
+                        {
+                            for (int y = 0; y < 25; y++)
+                            {
+                                if (code[y, x] == null)
+                                {
+                                    if (data[index] == (byte)0) { code[y, x] = new Pixel((byte)255, (byte)255, (byte)255); }
+                                    else { code[y, x] = new Pixel((byte)0, (byte)0, (byte)0); }
+                                    index++;
+                                }
+                                if (code[y, x - 1] == null)
+                                {
+                                    if (data[index] == (byte)0) { code[y, x - 1] = new Pixel((byte)255, (byte)255, (byte)255); }
+                                    else { code[y, x - 1] = new Pixel((byte)0, (byte)0, (byte)0); }
+                                    index++;
+                                }
+                            }
+                            montee = true;
+                        }
+
+                    }
+                    QR = new MyImage(25, code);
                     QR.From_Image_To_File(nom);
                     break;
             }
