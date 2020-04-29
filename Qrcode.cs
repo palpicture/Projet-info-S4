@@ -336,6 +336,7 @@ namespace Projet_info_S4
                     }
                     MyImage QR = new MyImage(21, code);
                     QR.Agrandissement(4);
+                    QR.Miroir('V');
                     QR.From_Image_To_File(nom);
                     break;
 
@@ -365,12 +366,12 @@ namespace Projet_info_S4
                         code[1 + i, 5] = new Pixel((byte)255, (byte)255, (byte)255);
                         code[23 - i, 1] = new Pixel((byte)255, (byte)255, (byte)255);
                         code[23, 1 + i] = new Pixel((byte)255, (byte)255, (byte)255);
-                        code[15, 1 + i] = new Pixel((byte)255, (byte)255, (byte)255);
+                        code[19, 1 + i] = new Pixel((byte)255, (byte)255, (byte)255);
                         code[23 - i, 5] = new Pixel((byte)255, (byte)255, (byte)255);
                         code[1 + i, 23] = new Pixel((byte)255, (byte)255, (byte)255);
                         code[1, 23 - i] = new Pixel((byte)255, (byte)255, (byte)255);
                         code[5, 23 - i] = new Pixel((byte)255, (byte)255, (byte)255);
-                        code[1 + i, 15] = new Pixel((byte)255, (byte)255, (byte)255);
+                        code[1 + i, 19] = new Pixel((byte)255, (byte)255, (byte)255);
                     }
                     for (int i = 0; i < 3; i++)
                     {
@@ -396,7 +397,7 @@ namespace Projet_info_S4
                     {
                         code[7, i] = new Pixel((byte)255, (byte)255, (byte)255);
                         code[i, 7] = new Pixel((byte)255, (byte)255, (byte)255);
-                        code[13, i] = new Pixel((byte)255, (byte)255, (byte)255);
+                        code[17, i] = new Pixel((byte)255, (byte)255, (byte)255);
                         code[24 - i, 7] = new Pixel((byte)255, (byte)255, (byte)255);
                         code[i, 13] = new Pixel((byte)255, (byte)255, (byte)255);
                         code[7, 24 - i] = new Pixel((byte)255, (byte)255, (byte)255);
@@ -508,6 +509,7 @@ namespace Projet_info_S4
                     }
                     QR = new MyImage(25, code);
                     QR.Agrandissement(4);
+                    QR.Miroir('V');
                     QR.From_Image_To_File(nom);
                     break;
             }

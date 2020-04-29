@@ -25,7 +25,7 @@ namespace Projet_info_S4
                 string chemin = "";
                 if (choix == 1)
                 {
-                    Console.WriteLine("\n\n Entrez le chemin du fichier souhaité > ");
+                    Console.Write("\n\n Entrez le chemin du fichier souhaité > ");
                     chemin = Console.ReadLine();
                 }
                 else if (choix == 2) { chemin = "coco.bmp"; }

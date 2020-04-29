@@ -60,7 +60,7 @@ namespace Projet_info_S4
             type = "bmp";
             this.haut = cote;
             this.large = cote;
-            this.taille = cote*cote + 54;
+            this.taille = cote*cote*3 + 54;
             this.offset = 54;
             this.couleur = 3;
             this.image = code;
