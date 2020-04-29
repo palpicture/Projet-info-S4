@@ -247,7 +247,7 @@ namespace Projet_info_S4
         }
 
         //Méthode qui permet de tourner une image selon n'importe quel angle
-        public void Rotation1(int angle)
+        public void Rotation(int angle)
         {
             int taille1 = Convert.ToInt32(Math.Sqrt(haut * haut + large * large)) + 1;
             Pixel[,] image1 = new Pixel[taille1, taille1];

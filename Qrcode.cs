@@ -9,7 +9,7 @@ namespace Projet_info_S4
     class Qrcode
     {
 
-        int version;
+        int version = 0;
         byte[] data;
         static string masque = "111011111000100";
 
@@ -175,6 +175,8 @@ namespace Projet_info_S4
             else { Console.WriteLine("erreur, chaine de carractere trop longue"); }
         }
 
+        public int Version { get { return version; } }
+
 
         public void generation(string nom)
         {
@@ -282,7 +284,7 @@ namespace Projet_info_S4
                     }
 
                     //dark module
-                    code[8, 13] = new Pixel((byte)255, (byte)255, (byte)255);
+                    code[13, 8] = new Pixel((byte)255, (byte)255, (byte)255);
 
                     //ecriture du code
                     bool montee = true;
@@ -439,6 +441,23 @@ namespace Projet_info_S4
 
                     //dark module
                     code[8, 13] = new Pixel((byte)255, (byte)255, (byte)255);
+
+                    // module d'alignement
+                    for (int i = 0; i < 5; i++)
+                    {
+                        code[16+i, 16] = new Pixel((byte)0, (byte)0, (byte)0);
+                        code[16,16+ i] = new Pixel((byte)0, (byte)0, (byte)0);
+                        code[20, 16+i] = new Pixel((byte)0, (byte)0, (byte)0);
+                        code[16+i, 20] = new Pixel((byte)0, (byte)0, (byte)0);
+                    }
+                    for (int i = 0; i < 3; i++)
+                    {
+                        code[17 + i, 17] = new Pixel((byte)255, (byte)255, (byte)255);
+                        code[17, 17 + i] = new Pixel((byte)255, (byte)255, (byte)255);
+                        code[19, 17 + i] = new Pixel((byte)255, (byte)255, (byte)255);
+                        code[17 + i, 19] = new Pixel((byte)255, (byte)255, (byte)255);
+                    }
+                    code[18, 18] = new Pixel((byte)0, (byte)0, (byte)0);
 
                     //ecriture du code
                     montee = true;
