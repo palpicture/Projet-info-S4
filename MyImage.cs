@@ -176,7 +176,7 @@ namespace Projet_info_S4
             for (int i = 0; i < 4; i++) { header[18 + i] = temp[i]; }
             temp = Convertir_Int_To_Endian(haut, 4);
             for (int i = 0; i < 4; i++) { header[22 + i] = temp[i]; }
-            temp = Convertir_Int_To_Endian(taille + 54, 4);
+            temp = Convertir_Int_To_Endian(taille , 4);
             for (int i = 0; i < 4; i++) { header[2 + i] = temp[i]; }
         }
 
@@ -204,7 +204,7 @@ namespace Projet_info_S4
             for (int i = 0; i < 4; i++) { header[18 + i] = temp[i]; }
             temp = Convertir_Int_To_Endian(haut, 4);
             for (int i = 0; i < 4; i++) { header[22 + i] = temp[i]; }
-            temp = Convertir_Int_To_Endian(taille + 54, 4);
+            temp = Convertir_Int_To_Endian(taille, 4);
             for (int i = 0; i < 4; i++) { header[2 + i] = temp[i]; }
         }
 
@@ -247,13 +247,14 @@ namespace Projet_info_S4
         }
 
         //Méthode qui permet de tourner une image selon n'importe quel angle
-        public void Rotation(int angle)
+        public void Rotation(int angleint)
         {
             int taille1 = Convert.ToInt32(Math.Sqrt(haut * haut + large * large)) + 1;
             Pixel[,] image1 = new Pixel[taille1, taille1];
             Pixel[,] imageTemp = new Pixel[taille1, taille1];
             int X = (taille1 - haut) / 2;
             int Y = (taille1 - large) / 2;
+            double angle = (angleint * Math.PI) / 180;
             for (int k = 0; k < taille1; k++)
             {
                 for (int l = 0; l < taille1; l++)
@@ -265,15 +266,16 @@ namespace Projet_info_S4
                 }
             }
             image = imageTemp;
-
+            X = taille1 / 2;
+            Y = taille1 / 2;
             for (int j = 0; j < taille1; j++)
             {
                 for (int i = 0; i < taille1; i++)
                 {
-                    int tempi = Convert.ToInt32(i * Math.Cos(angle) - j * Math.Sin(angle));
-                    int tempj = Convert.ToInt32(i * Math.Sin(angle) + j * Math.Cos(angle));
-                    if (tempj < taille1 && tempi < taille1 && 0 <= tempj && 0 <= tempi) { image1[tempj, tempi] = image[i, j]; }
-                    else if (0 <= tempj && 0 <= tempi) { image1[tempj, tempi] = new Pixel((byte)0, (byte)0, (byte)0); }
+                    int tempi = Convert.ToInt32((i-X) * Math.Cos(angle) - (j-Y) * Math.Sin(angle)+X);
+                    int tempj = Convert.ToInt32((i-X) * Math.Sin(angle) + (j-Y) * Math.Cos(angle)+Y);
+                    if (tempj < taille1 && tempi < taille1 && 0 <= tempj && 0 <= tempi) { image1[tempj, tempi] = image[j, i]; }
+                    
                 }
             }
             image = image1;
@@ -286,6 +288,7 @@ namespace Projet_info_S4
             for (int i = 0; i < 4; i++) { header[22 + i] = temp[i]; }
             temp = Convertir_Int_To_Endian(taille, 4);
             for (int i = 0; i < 4; i++) { header[2 + i] = temp[i]; }
+            Agrandissement(4);
         }
 
         //Méthode permettant de retrouver la matrice de convolution de l'image

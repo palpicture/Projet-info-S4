@@ -403,7 +403,7 @@ namespace Projet_info_S4
                     }
 
                     //motifs de synchronisation
-                    for (int i = 8; i < 13; i++)
+                    for (int i = 8; i < 17; i++)
                     {
                         if (i % 2 == 0)
                         {
@@ -507,6 +507,7 @@ namespace Projet_info_S4
 
                     }
                     QR = new MyImage(25, code);
+                    QR.Agrandissement(4);
                     QR.From_Image_To_File(nom);
                     break;
             }
