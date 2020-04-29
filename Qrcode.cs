@@ -269,18 +269,18 @@ namespace Projet_info_S4
                             if (i < 6) { code[8,i] = new Pixel((byte)0, (byte)0, (byte)0); }
                             else if(i<8) { code[8, 1 + i] = new Pixel((byte)0, (byte)0, (byte)0); }
                             else if(i==8) { code[7, 8] = new Pixel((byte)0, (byte)0, (byte)0); }
-                            else { code[14-i, 8] = new Pixel((byte)0, (byte)0, (byte)0); }
+                            else { code[14-i, 8] = new Pixel((byte)0, (byte)0, (byte)0); };
                             if (i < 7) { code[20-i, 8] = new Pixel((byte)0, (byte)0, (byte)0); }
-                            else { code[8, 20-i] = new Pixel((byte)0, (byte)0, (byte)0); }
+                            else { code[8, 6+i] = new Pixel((byte)0, (byte)0, (byte)0); }
                         }
                         else
                         {
                             if (i < 6) { code[8, i] = new Pixel((byte)255, (byte)255, (byte)255); }
                             else if (i < 8) { code[8, 1 + i] = new Pixel((byte)255, (byte)255, (byte)255); }
                             else if (i == 8) { code[7, 8] = new Pixel((byte)255, (byte)255, (byte)255); }
-                            else { code[14 - i, 8] = new Pixel((byte)255, (byte)255, (byte)255); }
+                            else { code[14 - i, 8] = new Pixel((byte)255, (byte)255, (byte)255); };
                             if (i < 7) { code[20 - i, 8] = new Pixel((byte)255, (byte)255, (byte)255); }
-                            else { code[8, 20 - i] = new Pixel((byte)255, (byte)255, (byte)255); }
+                            else { code[8, 6 + i] = new Pixel((byte)255, (byte)255, (byte)255); }
                         }
                     }
 
@@ -427,7 +427,7 @@ namespace Projet_info_S4
                             else if (i == 8) { code[7, 8] = new Pixel((byte)0, (byte)0, (byte)0); }
                             else { code[14 - i, 8] = new Pixel((byte)0, (byte)0, (byte)0); }
                             if (i < 7) { code[24 - i, 8] = new Pixel((byte)0, (byte)0, (byte)0); }
-                            else { code[8, 24 - i] = new Pixel((byte)0, (byte)0, (byte)0); }
+                            else { code[8, 10 + i] = new Pixel((byte)0, (byte)0, (byte)0); }
                         }
                         else
                         {
@@ -436,7 +436,7 @@ namespace Projet_info_S4
                             else if (i == 8) { code[7, 8] = new Pixel((byte)255, (byte)255, (byte)255); }
                             else { code[14 - i, 8] = new Pixel((byte)255, (byte)255, (byte)255); }
                             if (i < 7) { code[24 - i, 8] = new Pixel((byte)255, (byte)255, (byte)255); }
-                            else { code[8, 24 - i] = new Pixel((byte)255, (byte)255, (byte)255); }
+                            else { code[8, 10 + i] = new Pixel((byte)255, (byte)255, (byte)255); }
                         }
                     }
 
