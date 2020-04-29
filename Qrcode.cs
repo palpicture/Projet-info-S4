@@ -124,6 +124,7 @@ namespace Projet_info_S4
                     compt++;
                 }
                 compt--;
+                index--;
                 compt = compt * 11 + 21;
                 if (taille % 2 == 1)
                 {
@@ -180,7 +181,7 @@ namespace Projet_info_S4
 
         public void generation(string nom)
         {
-            switch(version)
+            switch(this.version)
             {
                 case (1):
                     Pixel[,] code = new Pixel[21, 21];
