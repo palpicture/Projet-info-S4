@@ -472,7 +472,7 @@ namespace Projet_info_S4
                 }
             }
 
-            haut = 0;
+            haut = 1000;
             for (int l = 0; l < 256; l++)
             {
                 if (R[l] >= haut)
@@ -570,7 +570,7 @@ namespace Projet_info_S4
             }
 
             image = Histogramme;
-            haut = 256;
+            haut = 1000;
             large = 788;
             taille = haut * large * 3 + 54;
             byte[] temp = Convertir_Int_To_Endian(large, 4);
