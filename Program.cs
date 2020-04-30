@@ -174,8 +174,6 @@ namespace Projet_info_S4
                         break;
                 }
             }
-            
-            Console.ReadKey();
         }
     }
 }

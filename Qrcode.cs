@@ -264,7 +264,7 @@ namespace Projet_info_S4
                     //implantation du masque
                     for(int i = 0;i<15;i++)
                     {
-                        if (masque[i]==0)
+                        if (masque[i]=='1')
                         {
                             if (i < 6) { code[8,i] = new Pixel((byte)0, (byte)0, (byte)0); }
                             else if(i<8) { code[8, 1 + i] = new Pixel((byte)0, (byte)0, (byte)0); }
@@ -285,7 +285,7 @@ namespace Projet_info_S4
                     }
 
                     //dark module
-                    code[13, 8] = new Pixel((byte)255, (byte)255, (byte)255);
+                    code[13, 8] = new Pixel((byte)0, (byte)0, (byte)0);
 
                     //ecriture du code
                     bool montee = true;
@@ -421,7 +421,7 @@ namespace Projet_info_S4
                     //implantation du masque
                     for (int i = 0; i < 15; i++)
                     {
-                        if (masque[i] == 0)
+                        if (masque[i] == '1')
                         {
                             if (i < 6) { code[8, i] = new Pixel((byte)0, (byte)0, (byte)0); }
                             else if (i < 8) { code[8, 1 + i] = new Pixel((byte)0, (byte)0, (byte)0); }
@@ -442,7 +442,7 @@ namespace Projet_info_S4
                     }
 
                     //dark module
-                    code[8, 13] = new Pixel((byte)255, (byte)255, (byte)255);
+                    code[8, 13] = new Pixel((byte)0, (byte)0, (byte)0);
 
                     // module d'alignement
                     for (int i = 0; i < 5; i++)
