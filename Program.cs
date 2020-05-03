@@ -51,7 +51,8 @@ namespace Projet_info_S4
                                             + "\n 11/ Créer l'histogramme"
                                             + "\n 12/ Cacher une image dans une image"
                                             + "\n 13/ Décoder une image"
-                                            + "\n 14/ Exit");
+                                            + "\n 14/ Innovation"
+                                            + "\n 15/ Exit");
 
                             Console.Write("\n Entrez le programme souhaité  > ");
                             int choix2 = Convert.ToInt32(Console.ReadLine());
@@ -137,6 +138,12 @@ namespace Projet_info_S4
                                     break;
 
                                 case 14:
+                                    Console.WriteLine("\n\n Cette innovation est un ajustement automatique de la luminosité \n le programme va chercher à avoir une luminosité moyenne en changeant de la meme facon la luminosté de tous les pixels \n Attention : cela ne marchera pas (ou mal) sur les images avec de forts changement de luminosité ou sur des images extremement sombre ou claire");
+                                    image.amelioration();
+                                    Console.WriteLine("\n\n Image améliorée");
+                                    break;
+
+                                case 15:
                                     fin2 = false;
                                     break;
 

@@ -754,5 +754,33 @@ namespace Projet_info_S4
             }
             image = im2;
         }
+
+        public void amelioration()
+        {
+            int lumiere = 0;
+            for (int j = 0;j<haut;j++)
+            {
+                for(int i =0;i<large;i++)
+                {
+                    lumiere += image[j, i].Red + image[j, i].Green + image[j, i].Blue;
+                }
+            }
+            byte dif = (byte)(127 - lumiere / (haut * taille*3));
+            for (int j = 0; j < haut; j++)
+            {
+                for (int i = 0; i < large; i++)
+                {
+                    if (image[j, i].Red + dif < 0) { image[j, i].Red = 0; }
+                    else if(image[j, i].Red + dif > 255) { image[j, i].Red = 255; }
+                    else { image[j, i].Red += dif; }
+                    if (image[j, i].Green + dif < 0) { image[j, i].Green = 0; }
+                    else if (image[j, i].Green + dif > 255) { image[j, i].Green = 255; }
+                    else { image[j, i].Green += dif; }
+                    if (image[j, i].Blue + dif < 0) { image[j, i].Blue = 0; }
+                    else if (image[j, i].Blue + dif > 255) { image[j, i].Blue = 255; }
+                    else { image[j, i].Blue += dif; }
+                }
+            }
+        }
     }
 }
