@@ -765,7 +765,7 @@ namespace Projet_info_S4
                     lumiere += image[j, i].Red + image[j, i].Green + image[j, i].Blue;
                 }
             }
-            byte dif = (byte)(127 - lumiere / (haut * taille*3));
+            byte dif = (byte)(40 - lumiere / (haut * taille*3));
             for (int j = 0; j < haut; j++)
             {
                 for (int i = 0; i < large; i++)
